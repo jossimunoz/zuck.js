@@ -125,7 +125,12 @@
 #zuck-modal-content .story-viewer.paused.longPress .tip {
   opacity: 0;
 }
-#zuck-modal-content .story-viewer.viewing:not(.paused):not(.stopped) .slides-pointers > * > .active > .progress {
+#zuck-modal-content
+  .story-viewer.viewing:not(.paused):not(.stopped)
+  .slides-pointers
+  > *
+  > .active
+  > .progress {
   -webkit-animation-play-state: running;
   animation-play-state: running;
 }
@@ -244,6 +249,12 @@
   background-position: center;
   object-fit: cover;
 }
+
+#zuck-modal-content .story-viewer .head .info .profile-link {
+  color: #fff;
+  text-decoration: none;
+}
+
 #zuck-modal-content .story-viewer .head .time {
   opacity: 0.75;
   font-weight: 500;
@@ -333,6 +344,7 @@
 #zuck-modal-content .story-viewer .slides .item.active,
 #zuck-modal-content .story-viewer .slides .item.active .tip.link {
   display: block;
+  margin-bottom: 50px;
 }
 
 #zuck-modal-content .story-viewer .tip {
@@ -353,7 +365,6 @@
   font-weight: 500;
   padding: 12px 24px;
 }
-
 
 #zuck-modal.rtl {
   direction: rtl;
@@ -492,7 +503,12 @@
   #zuck-modal.rtl #zuck-modal-content .story-viewer .head .left > .back {
     text-align: right;
   }
-  #zuck-modal.rtl #zuck-modal-content .story-viewer.with-back-button .head .left .item-preview {
+  #zuck-modal.rtl
+    #zuck-modal-content
+    .story-viewer.with-back-button
+    .head
+    .left
+    .item-preview {
     margin-left: auto;
     margin-right: 18px;
   }

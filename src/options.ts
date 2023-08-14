@@ -36,15 +36,18 @@ export const optionsDefault = (option?: ZuckObject['option']): Options => ({
       // on end story
       callback();
     },
+    onEndItem: function (storeId, itemId, callback) {
+      callback?.();
+    },
     onClose: function (storyId, callback) {
       // on close story viewer
       callback();
     },
-    onNextItem: function (storyId, nextStoryId, callback) {
+    onNextItem: function (storyId, itemId, nextStoryId, callback) {
       // on navigate item of story
       callback();
     },
-    onNavigateItem: function (storyId, nextStoryId, callback) {
+    onNavigateItem: function (storyId, itemId, nextStoryId, callback) {
       // use to update state on your reactive framework
       callback();
     },
@@ -126,13 +129,20 @@ export const optionsDefault = (option?: ZuckObject['option']): Options => ({
                     }
 
                     <span class="item-preview">
-                      <img lazy="eager" class="profilePhoto" src="${
-                        storyData['photo']
-                      }" />
+                    ${
+                      option('profileLink') && storyData['profileLink']
+                        ? `<a href="${storyData['profileLink']}"><img lazy="eager" class="profilePhoto" src="${storyData['photo']}" /></a>`
+                        : `<img lazy="eager" class="profilePhoto" src="${storyData['photo']}" />`
+                    }
                     </span>
 
                     <div class="info">
-                      <strong class="name">${storyData['name']}</strong>
+                    ${
+                      option('profileLink') && storyData['profileLink']
+                        ? `<a class="profile-link"  href="${storyData['profileLink']}"><strong class="name">${storyData['name']}</strong></a>`
+                        : `<strong class="name">${storyData['name']}</strong>`
+                    }
+                     
                       <span class="time">${
                         timeAgo(storyData['time'], option('language')) || ''
                       }</span>

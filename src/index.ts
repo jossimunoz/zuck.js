@@ -98,7 +98,7 @@ export const Zuck: ZuckFunction = function (timeline, options) {
       video.play();
 
       try {
-        unmuteVideoItem(video, storyViewer);
+        // unmuteVideoItem(video, storyViewer);
       } catch (e) {
         console.warn('Could not unmute video', unmute);
       }
@@ -402,6 +402,7 @@ export const Zuck: ZuckFunction = function (timeline, options) {
     const currentItemElements = storyViewer.querySelectorAll<HTMLElement>(
       `[data-index="${currentItem}"]`
     );
+
     const currentPointer = currentItemElements[0];
     const currentItemElement = currentItemElements[1];
 
@@ -411,6 +412,13 @@ export const Zuck: ZuckFunction = function (timeline, options) {
     );
     const nextPointer = nextItems[0];
     const nextItem = nextItems[1];
+
+    callbackOption('onEndItem')
+      ? callbackOption('onEndItem')(
+          currentStory,
+          currentItemElement.getAttribute('data-item-id')
+        )
+      : undefined;
 
     if (storyViewer && nextPointer && nextItem) {
       const navigateItemCallback = function () {
@@ -458,6 +466,7 @@ export const Zuck: ZuckFunction = function (timeline, options) {
 
       callback(
         currentStory,
+        currentItemElement.getAttribute('data-item-id'),
         nextItem.getAttribute('data-story-id'),
         navigateItemCallback
       );

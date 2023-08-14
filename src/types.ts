@@ -37,6 +37,7 @@ export type StoryItem = {
   loop?: Maybe<boolean>;
   src?: Maybe<string>;
   preview?: Maybe<string>;
+  profileLink?: Maybe<string>;
   link?: Maybe<string>;
   linkText?: Maybe<string>;
   time?: Maybe<string | Date | number>;
@@ -80,17 +81,21 @@ export type Callbacks = {
   onView: (storyId: string, callback?: () => void) => void;
   onEnd: (storyId: string, callback: () => void) => void;
   onClose: (storyId: string, callback: () => void) => void;
+
   onDataUpdate: (data: StoriesTimeline, callback: () => void) => void;
   onNextItem: (
     storyId: string,
+    itemId: string,
     nextStoryId: string,
     callback: () => void
   ) => void;
   onNavigateItem: (
     storyId: string,
+    itemId: string,
     nextStoryId: string,
     callback: () => void
   ) => void;
+  onEndItem: (storyId: string, itemId: string, callback?: () => void) => void;
 };
 
 export type Language = {
@@ -116,6 +121,7 @@ export type StoriesTimeline = TimelineItem[];
 export type Options = {
   rtl?: boolean;
   skin?: string;
+  profileLink?: boolean;
   avatars?: boolean;
   stories: StoriesTimeline;
   backButton?: boolean;
@@ -130,6 +136,7 @@ export type Options = {
   callbacks?: Callbacks;
   language?: Language;
   template?: Templates;
+
   reactive?: boolean;
   [customKey: string]: unknown;
 };

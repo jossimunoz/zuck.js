@@ -68,9 +68,40 @@
         list: currentSkin['params']['list'],
         cubeEffect: currentSkin['params']['cubeEffect'],
         localStorage: true,
+        profileLink: true,
+        callbacks: {
+          onOpen: function (storyId, callback) {
+            // on open story viewer
+            callback();
+          },
+          onView: function (storyId, callback) {
+            // on view story
+            callback?.();
+          },
+          onEnd: function (storyId, callback) {
+            // on end story
+            callback();
+          },
+          onClose: function (storyId, callback) {
+            // on close story viewer
+            callback();
+          },
+          onEndItem: function (storyId, itemId) {
+            console.log(storyId, itemId);
+          },
+          onNavigateItem: function (storyId, itemId, nextStoryId, callback) {
+            // use to update state on your reactive framework
+            callback();
+          },
+          onDataUpdate: function (data, callback) {
+            // use to update state on your reactive framework
+            callback();
+          }
+        },
         stories: [
           {
             id: 'ramon',
+            profileLink: 'https://ramon.codes/',
             photo:
               'https://raw.githubusercontent.com/ramonszo/assets/master/zuck.js/users/1.jpg',
             name: 'Ramon',
@@ -94,8 +125,8 @@
                 src: 'https://raw.githubusercontent.com/ramonszo/assets/master/zuck.js/stories/2.mp4',
                 preview:
                   'https://raw.githubusercontent.com/ramonszo/assets/master/zuck.js/stories/2.jpg',
-                link: '',
-                linkText: false,
+                link: 'Test',
+                linkText: 'Hello',
                 time: timestamp()
               },
               {
